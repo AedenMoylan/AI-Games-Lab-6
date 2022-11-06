@@ -9,45 +9,58 @@ void Grid::init()
 
 void Grid::selectStartPosition(sf::RenderWindow& t_window)
 {
-	sf::Vector2f mousePos = sf::Vector2f{ sf::Mouse::getPosition(t_window) };
-
-	for (int i = 0; i < MAX_CELLS; i++)
+	if (isStartPositionSelected == false)
 	{
-		if (gridVector.at(i).getCellShape().getGlobalBounds().contains(mousePos))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			if (isStartPositionSelected == false)
-			{
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				{
-					std::cout << "Start Point: " + std::to_string(gridVector.at(i).getID()) << std::endl;
-					gridVector.at(i).setStartColour();
-					gridVector.at(i).setStartPoint(true);
-					isStartPositionSelected = true;
-				}
-			}
+			sf::Vector2f mousePos = sf::Vector2f{ sf::Mouse::getPosition(t_window) };
+			int xPos = mousePos.x / 30;
+			int yPos = mousePos.y / 30;
+			float id = yPos * MAX_ROWS;
+			id += xPos;
+
+			std::cout << "Start Point: " + std::to_string(gridVector.at(id).getID()) << std::endl;
+			gridVector.at(id).setStartColour();
+			gridVector.at(id).setStartPoint(true);
+			isStartPositionSelected = true;
 		}
 	}
 }
 
 void Grid::selectEndPosition(sf::RenderWindow& t_window)
 {
-	sf::Vector2f mousePos = sf::Vector2f{ sf::Mouse::getPosition(t_window) };
-
-	for (int i = 0; i < MAX_CELLS; i++)
+	if (isEndPositionSelected == false)
 	{
-		if (gridVector.at(i).getCellShape().getGlobalBounds().contains(mousePos))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 		{
-			if (isEndPositionSelected == false)
-			{
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-				{
-					std::cout << "End Point: " + std::to_string(gridVector.at(i).getID()) << std::endl;
-					gridVector.at(i).setEndColour();
-					gridVector.at(i).setEndPoint(true);
-					isEndPositionSelected = true;
-				}
-			}
+			sf::Vector2f mousePos = sf::Vector2f{ sf::Mouse::getPosition(t_window) };
+			int xPos = mousePos.x / 30;
+			int yPos = mousePos.y / 30;
+			float id = yPos * MAX_ROWS;
+			id += xPos;
+
+			std::cout << "End Point: " + std::to_string(gridVector.at(id).getID()) << std::endl;
+			gridVector.at(id).setEndColour();
+			gridVector.at(id).setEndPoint(true);
+			isEndPositionSelected = true;
 		}
+	}
+}
+
+void Grid::selectObstaclePosition(sf::RenderWindow& t_window)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		sf::Vector2f mousePos = sf::Vector2f{ sf::Mouse::getPosition(t_window) };
+		int xPos = mousePos.x / 30;
+		int yPos = mousePos.y / 30;
+		float id = yPos * MAX_ROWS;
+		id += xPos;
+
+
+		std::cout << "Obstacle Point: " + std::to_string(gridVector.at(id).getID()) << std::endl;
+		gridVector.at(id).setObstacleColour();
+		gridVector.at(id).setObstaclePoint(true);
 	}
 }
 

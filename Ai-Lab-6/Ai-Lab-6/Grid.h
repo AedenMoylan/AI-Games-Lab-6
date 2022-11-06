@@ -20,6 +20,7 @@ public:
 	void init();
 	void selectStartPosition(sf::RenderWindow& t_window);
 	void selectEndPosition(sf::RenderWindow& t_window);
+	void selectObstaclePosition(sf::RenderWindow& t_window);
 	void setupGrid();
 	void render(sf::RenderWindow& t_window);
 	void update();

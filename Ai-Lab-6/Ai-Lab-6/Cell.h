@@ -10,12 +10,15 @@ class Cell
 	int id = 0;
 	bool isEndPoint = false;
 	bool isStartPoint = false;
+	bool isObstaclePoint = false;
 public:
 	void init();
 	void setEndPoint(bool t_isEndPointSelected);
 	void setStartPoint(bool t_isStartPointSelected);
+	void setObstaclePoint(bool t_isObstaclePointSelected);
 	void setStartColour();
 	void setEndColour();
+	void setObstacleColour();
 	void setID(int t_id);
 	void setPos(sf::Vector2f t_pos);
 	void initRect();

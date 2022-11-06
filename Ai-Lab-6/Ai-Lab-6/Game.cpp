@@ -64,6 +64,7 @@ void Game::update()
 	grid.update();
 	grid.selectStartPosition(m_window);
 	grid.selectEndPosition(m_window);
+	grid.selectObstaclePosition(m_window);
 }
 
 

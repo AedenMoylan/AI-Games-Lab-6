@@ -14,6 +14,11 @@ void Cell::setEndColour()
     cellShape.setFillColor(sf::Color::Yellow);
 }
 
+void Cell::setObstacleColour()
+{
+    cellShape.setFillColor(sf::Color::White);
+}
+
 int Cell::getID()
 {
     return id;
@@ -28,6 +33,11 @@ void Cell::setEndPoint(bool t_isEndPointSelected)
 void Cell::setStartPoint(bool t_isStartPointSelected)
 {
     isStartPoint = t_isStartPointSelected;
+}
+
+void Cell::setObstaclePoint(bool t_isObstaclePointSelected)
+{
+    isObstaclePoint = t_isObstaclePointSelected;
 }
 
 void Cell::setID(int t_id)

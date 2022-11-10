@@ -1,4 +1,5 @@
-﻿  Grid.cpp
+﻿  Game.cpp
+  Grid.cpp
 C:\Users\Aeden\Desktop\lab 6 part 2\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(29,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [

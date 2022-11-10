@@ -36,6 +36,7 @@ public:
 	void setObstacleCost();
 	void setCostText();
 	void setCost(int t_p, int t_col, int t_cal, int t_cost);
+	void generateHeatMap();
 	void update();
 
 };

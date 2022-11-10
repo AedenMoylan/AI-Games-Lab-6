@@ -60,6 +60,7 @@ void Grid::selectEndPosition(sf::RenderWindow& t_window)
 			makeCost();
 			setObstacleCost();
 			setCostText();
+			generateHeatMap();
 		}
 	}
 }
@@ -255,6 +256,24 @@ void Grid::setCostText()
 	{
 		int test = gridVector.at(i).getCost();
 		costText[i].setString(std::to_string(test));
+	}
+}
+
+void Grid::generateHeatMap()
+{
+	float redColourValue = 255.0f;
+
+	for (int i = 0; i < MAX_CELLS; i++)
+	{
+		if (gridVector.at(i).getIsObstaclePoint() == false)
+		{
+			sf::Vector3f colourValue = { redColourValue - (gridVector.at(i).getCost() * 8) ,0.0f,0.0f };
+			if (colourValue.x < 50)
+			{
+				colourValue.x = 50;
+			}
+			gridVector.at(i).setColor(colourValue);
+		}
 	}
 }
 

@@ -20,7 +20,7 @@ class Grid
 	bool isEndPositionSelected;
 	bool areObstaclesSelected;
 	sf::Text costText[MAX_CELLS];
-	Cell* atIndex(int t_id);
+	int endID;
 public:
 	void init();
 	void selectStartPosition(sf::RenderWindow& t_window);
@@ -29,8 +29,13 @@ public:
 	void setupGrid();
 	void render(sf::RenderWindow& t_window);
 	void setUpText(sf::Font& m_font);
-	/*void neighbours(int t_row, int t_col, int t_current);*/
 	void setNeighbours();
+	void makeCost();
+	void verticalCells(int t_point, int t_row, int t_cost);
+	void horizontalCells(int t_point, int t_col, int t_cost);
+	void setObstacleCost();
+	void setCostText();
+	void setCost(int t_p, int t_col, int t_cal, int t_cost);
 	void update();
 
 };

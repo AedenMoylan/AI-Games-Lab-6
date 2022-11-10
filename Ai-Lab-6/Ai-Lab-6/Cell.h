@@ -13,6 +13,7 @@ class Cell
 	bool isEndPoint = false;
 	bool isStartPoint = false;
 	bool isObstaclePoint = false;
+	int cost;
 public:
 	std::vector<int> neighbourList;
 	void init();
@@ -28,4 +29,8 @@ public:
 	void addNeighbours(int t_id);
 	int getID();
 	sf::RectangleShape getCellShape();
+	void addCost(int m_cost);
+	bool getIsObstaclePoint();
+	int getCost();
+	void setColor(sf::Vector3f t_RGBValue);
 };

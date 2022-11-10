@@ -2,6 +2,7 @@
 
 void Cell::init()
 {
+    cost = -10;
 }
 
 void Cell::setStartColour()
@@ -66,4 +67,27 @@ void Cell::initRect()
 void Cell::addNeighbours(int t_id)
 {
     neighborVector.push_back(t_id);
+}
+
+void Cell::addCost(int m_cost)
+{
+    cost = m_cost;
+}
+
+bool Cell::getIsObstaclePoint()
+{
+    return isObstaclePoint;
+}
+
+int Cell::getCost()
+{
+    return cost;
+}
+
+void Cell::setColor(sf::Vector3f t_RGBValue)
+{
+    sf::Uint8 red = t_RGBValue.x;
+    sf::Uint8 green = t_RGBValue.y;
+    sf::Uint8 blue = t_RGBValue.z;
+    cellShape.setFillColor(sf::Color{ red, green ,blue });
 }

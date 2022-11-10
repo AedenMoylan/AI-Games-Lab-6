@@ -4,6 +4,7 @@
 #include "ScreenSize.h"
 #include "Cell.h"
 #include <vector>
+
 using namespace std;
 
 
@@ -19,6 +20,7 @@ class Grid
 	bool isEndPositionSelected;
 	bool areObstaclesSelected;
 	sf::Text costText[MAX_CELLS];
+	Cell* atIndex(int t_id);
 public:
 	void init();
 	void selectStartPosition(sf::RenderWindow& t_window);
@@ -27,6 +29,8 @@ public:
 	void setupGrid();
 	void render(sf::RenderWindow& t_window);
 	void setUpText(sf::Font& m_font);
+	/*void neighbours(int t_row, int t_col, int t_current);*/
+	void setNeighbours();
 	void update();
 
 };

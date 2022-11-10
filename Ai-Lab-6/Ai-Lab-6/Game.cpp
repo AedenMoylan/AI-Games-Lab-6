@@ -5,7 +5,7 @@ Game::Game() :
 {
 	if (!font.loadFromFile("Assets/Fonts/ariblk.ttf"))
 	{
-		std::cout << "error with font file file";
+		std::cout << "error with font file";
 	}
 
 	grid.setUpText(font);

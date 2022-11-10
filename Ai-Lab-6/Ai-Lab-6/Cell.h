@@ -3,15 +3,18 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 #include "ScreenSize.h"
+#include <list>
 
 class Cell
 {
 	sf::RectangleShape cellShape;
+	std::vector<int> neighborVector;
 	int id = 0;
 	bool isEndPoint = false;
 	bool isStartPoint = false;
 	bool isObstaclePoint = false;
 public:
+	std::vector<int> neighbourList;
 	void init();
 	void setEndPoint(bool t_isEndPointSelected);
 	void setStartPoint(bool t_isStartPointSelected);
@@ -22,8 +25,7 @@ public:
 	void setID(int t_id);
 	void setPos(sf::Vector2f t_pos);
 	void initRect();
-	void setNeighbours(Cell* t_neighbour);
+	void addNeighbours(int t_id);
 	int getID();
-	std::vector<Cell*> m_neighbour;
 	sf::RectangleShape getCellShape();
 };

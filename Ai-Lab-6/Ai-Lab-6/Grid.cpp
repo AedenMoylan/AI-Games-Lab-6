@@ -11,6 +11,11 @@ void Grid::init()
 	{
 		costText[i].setPosition(gridVector.at(i).getCellShape().getPosition());
 	}
+
+	int count = 0;
+
+	setNeighbours();
+
 }
 
 void Grid::selectStartPosition(sf::RenderWindow& t_window)
@@ -117,6 +122,31 @@ void Grid::setUpText(sf::Font& m_font)
 		costText[i].setCharacterSize(15);
 		costText[i].setFillColor(sf::Color::Black);
 		costText[i].setString("1");
+	}
+}
+
+void Grid::setNeighbours()
+{
+	for (int i = 0; i < MAX_CELLS; i++)
+	{
+		int row = i / 50;
+		int col = i % 50;
+
+		for (int direction = 0; direction < 9; direction++) {
+			if (direction == 4) continue;
+
+			int neighbourRow = row + ((direction % 3) - 1);
+			int neighbourColumn = col + ((direction / 3) - 1);
+
+			// out of bound check
+			if (neighbourRow >= 0 && neighbourRow < MAX_ROWS && neighbourColumn >= 0 && neighbourColumn < MAX_COLS) {
+				int id = neighbourRow + (neighbourColumn * MAX_ROWS);// num of rows
+
+				std::cout << i << std::endl;
+				gridVector.at(i).addNeighbours(neighbourRow + (neighbourColumn * 50));
+
+			}
+		}
 	}
 }
 

@@ -22,6 +22,8 @@ private:
 	void update();
 	void render();
 
+	sf::Font font;
+
 
 	sf::RenderWindow m_window;
 

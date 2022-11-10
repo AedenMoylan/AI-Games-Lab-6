@@ -3,6 +3,12 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ ScreenSize::WIDTH, ScreenSize::HEIGHT, 32U }, "AI Lab 6" }, m_exitGame{ false }
 {
+	if (!font.loadFromFile("Assets/Fonts/ariblk.ttf"))
+	{
+		std::cout << "error with font file file";
+	}
+
+	grid.setUpText(font);
 	grid.init();
 }
 

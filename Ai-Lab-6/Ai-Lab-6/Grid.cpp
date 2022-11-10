@@ -6,6 +6,11 @@ void Grid::init()
 	isStartPositionSelected = false;
 	isEndPositionSelected = false;
 	areObstaclesSelected = false;
+
+	for (int i = 0; i < MAX_CELLS; i++)
+	{
+		costText[i].setPosition(gridVector.at(i).getCellShape().getPosition());
+	}
 }
 
 void Grid::selectStartPosition(sf::RenderWindow& t_window)
@@ -99,8 +104,20 @@ void Grid::render(sf::RenderWindow& t_window)
 	for (int i = 0; i < MAX_CELLS; i++)
 	{
 		t_window.draw(gridVector.at(i).getCellShape());
+		t_window.draw(costText[i]);
 	}
 
+}
+
+void Grid::setUpText(sf::Font& m_font)
+{
+	for (int i = 0; i < MAX_CELLS; i++)
+	{
+		costText[i].setFont(m_font);
+		costText[i].setCharacterSize(15);
+		costText[i].setFillColor(sf::Color::Black);
+		costText[i].setString("1");
+	}
 }
 
 void Grid::update()

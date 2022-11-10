@@ -14,8 +14,10 @@ class Grid
 	const int MAX_CELLS = 2500;
 	const static int MAX_ROWS = 50;
 	const static int MAX_COLS = 50;
+	const static int MAX_OBSTACLES = 500;
 	bool isStartPositionSelected;
 	bool isEndPositionSelected;
+	bool areObstaclesSelected;
 public:
 	void init();
 	void selectStartPosition(sf::RenderWindow& t_window);

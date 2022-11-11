@@ -8,7 +8,6 @@
 class Cell
 {
 	sf::RectangleShape cellShape;
-	//std::vector<int> neighborVector;
 	int id = 0;
 	bool isEndPoint = false;
 	bool isStartPoint = false;
@@ -26,32 +25,23 @@ public:
 	void setID(int t_id);
 	void setPos(sf::Vector2f t_pos);
 	void initRect();
-	//void addNeighbours(int t_id);
-	int getID();
-	sf::RectangleShape getCellShape();
+	void setMarked(bool t_marked);
+	void setPrevious(Cell* previous);
+	void addNeighbour(int t_cellID);
 	void addCost(int m_cost);
-	bool getIsObstaclePoint();
-	int getCost();
 	void setColor(sf::Vector3f t_RGBValue);
-
+	int getID();
+	int getCost();
+	bool getIsObstaclePoint();
 	bool isMarked;
-	Cell* m_previous;
-	Cell* previous() const { return m_previous; }
-
-	void setPrevious(Cell* previous) { m_previous = previous; }
-	void setMarked(bool t_marked) { isMarked = t_marked; };
-
-	bool marked() const { return isMarked; }
-	float m_pathCost;
-	float m_h;
-
-	std::vector<int> m_neighbours;
-	void addNeighbour(int t_cellID)
-	{
-		m_neighbours.push_back(t_cellID);
-	}
-
+	bool marked();
 	bool isTraversable;
-
+	Cell* previous();
+	Cell* m_previous;
+	float pathCost;
+	float m_h;
+	std::vector<int> m_neighbours;
 	std::vector<int> m_diagonalList;
+	sf::RectangleShape getCellShape();
+
 };

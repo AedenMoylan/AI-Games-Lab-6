@@ -17,7 +17,7 @@ void Cell::setEndColour()
 
 void Cell::setObstacleColour()
 {
-    cellShape.setFillColor(sf::Color::White);
+    cellShape.setFillColor(sf::Color(180.0f,180.0f,180.0f));
 }
 
 int Cell::getID()
@@ -64,11 +64,6 @@ void Cell::initRect()
     cellShape.setSize(sf::Vector2f{ ScreenSize::WIDTH / 50,ScreenSize::HEIGHT / 50 });
 }
 
-//void Cell::addNeighbours(int t_id)
-//{
-//    neighborVector.push_back(t_id);
-//}
-
 void Cell::addCost(int m_cost)
 {
     cost = m_cost;
@@ -90,4 +85,29 @@ void Cell::setColor(sf::Vector3f t_RGBValue)
     sf::Uint8 green = t_RGBValue.y;
     sf::Uint8 blue = t_RGBValue.z;
     cellShape.setFillColor(sf::Color{ red, green ,blue });
+}
+
+Cell* Cell::previous()
+{
+    return m_previous; 
+}
+
+void Cell::setPrevious(Cell* previous)
+{
+    m_previous = previous;
+}
+
+void Cell::setMarked(bool t_marked)
+{
+    isMarked = t_marked;
+}
+
+bool Cell::marked()
+{
+    return isMarked;
+}
+
+void Cell::addNeighbour(int t_cellID)
+{
+    m_neighbours.push_back(t_cellID);
 }

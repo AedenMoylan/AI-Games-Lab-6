@@ -31,7 +31,6 @@ public:
 	void setupGrid();
 	void render(sf::RenderWindow& t_window);
 	void setUpText(sf::Font& m_font);
-	void setNeighbours();
 	void makeCost();
 	void verticalCells(int t_point, int t_row, int t_cost);
 	void horizontalCells(int t_point, int t_col, int t_cost);
@@ -40,20 +39,13 @@ public:
 	void setCost(int t_p, int t_col, int t_cal, int t_cost);
 	void generateHeatMap();
 	void update();
-
 	void neighbours(int t_row, int t_col, std::vector<Cell>& t_cells, int t_current);
-	void aStar(Cell* start, Cell* end);
-
+	void aStar(Cell* t_start, Cell* t_end);
 	std::vector<Cell>& returnCellsArray()
 	{
 		return gridVector;
 	}
-
 	Cell& returnCell(int t_id);
-	void runaStar(int t_start, int t_end);
-	void markPath();
-	void putPathRightWayUp();
-
-	sf::RectangleShape m_pathITtake[200];
+	void startAStar(int t_start, int t_end);
 
 };

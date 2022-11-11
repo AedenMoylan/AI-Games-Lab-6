@@ -3,6 +3,7 @@
 void Grid::init()
 {
 	setupGrid();
+
 	isStartPositionSelected = false;
 	isEndPositionSelected = false;
 	areObstaclesSelected = false;
@@ -12,10 +13,13 @@ void Grid::init()
 		costText[i].setPosition(gridVector.at(i).getCellShape().getPosition());
 		gridVector.at(i).init();
 	}
-
 	int count = 0;
 
-	setNeighbours();
+	for (int i = 0; i < 200; i++)
+	{
+		m_pathITtake[i].setSize(sf::Vector2f(30.0f, 30.0f));
+		m_pathITtake[i].setFillColor(sf::Color::Yellow);
+	}
 
 }
 
@@ -35,6 +39,8 @@ void Grid::selectStartPosition(sf::RenderWindow& t_window)
 			gridVector.at(id).setStartColour();
 			gridVector.at(id).setStartPoint(true);
 			isStartPositionSelected = true;
+
+			startID = id;
 		}
 	}
 }
@@ -60,7 +66,8 @@ void Grid::selectEndPosition(sf::RenderWindow& t_window)
 			makeCost();
 			setObstacleCost();
 			setCostText();
-			generateHeatMap();
+			//generateHeatMap();
+			runaStar(startID, endID);
 		}
 	}
 }
@@ -85,7 +92,7 @@ void Grid::selectObstaclePosition(sf::RenderWindow& t_window)
 		for (int i = 0; i < MAX_OBSTACLES; i++)
 		{
 			int randNum = (rand() % MAX_CELLS) + 1;
-			std::cout << "Obstacle Point: " + std::to_string(gridVector.at(randNum).getID()) << std::endl;
+			/*std::cout << "Obstacle Point: " + std::to_string(gridVector.at(randNum).getID()) << std::endl;*/
 			gridVector.at(randNum).setObstacleColour();
 			gridVector.at(randNum).setObstaclePoint(true);
 		}
@@ -108,6 +115,13 @@ void Grid::setupGrid()
 		}
 		gridVector.push_back(cell);
 		gridVector.at(i).setID(i);
+	}
+
+	for (int i = 0; i < 2500; i++) // 50 * 50 = 2500
+	{
+		int posY = i / 50;
+		int posX = i % 50;
+		neighbours(posX, posY, gridVector, i);
 	}
 }
 
@@ -134,29 +148,29 @@ void Grid::setUpText(sf::Font& m_font)
 	}
 }
 
-void Grid::setNeighbours()
-{
-	for (int i = 0; i < MAX_CELLS; i++)
-	{
-		int row = i / 50;
-		int col = i % 50;
-
-		for (int direction = 0; direction < 9; direction++) {
-			if (direction == 4) continue;
-
-			int neighbourRow = row + ((direction % 3) - 1);
-			int neighbourColumn = col + ((direction / 3) - 1);
-
-			// out of bound check
-			if (neighbourRow >= 0 && neighbourRow < MAX_ROWS && neighbourColumn >= 0 && neighbourColumn < MAX_COLS) {
-				int id = neighbourRow + (neighbourColumn * MAX_ROWS);// num of rows
-
-				std::cout << i << std::endl;
-				gridVector.at(i).addNeighbours(neighbourRow + (neighbourColumn * 50));
-			}
-		}
-	}
-}
+//void Grid::setNeighbours()
+//{
+//	for (int i = 0; i < MAX_CELLS; i++)
+//	{
+//		int row = i / 50;
+//		int col = i % 50;
+//
+//		for (int direction = 0; direction < 9; direction++) {
+//			if (direction == 4) continue;
+//
+//			int neighbourRow = row + ((direction % 3) - 1);
+//			int neighbourColumn = col + ((direction / 3) - 1);
+//
+//			// out of bound check
+//			if (neighbourRow >= 0 && neighbourRow < MAX_ROWS && neighbourColumn >= 0 && neighbourColumn < MAX_COLS) {
+//				int id = neighbourRow + (neighbourColumn * MAX_ROWS);// num of rows
+//
+//				//std::cout << i << std::endl;
+//				gridVector.at(i).addNeighbours(neighbourRow + (neighbourColumn * 50));
+//			}
+//		}
+//	}
+//}
 
 void Grid::makeCost()
 {
@@ -246,6 +260,7 @@ void Grid::setObstacleCost()
 		if (gridVector.at(i).getIsObstaclePoint() == true) {
 
 			gridVector[i].addCost(99999);
+			gridVector[i].isTraversable = false;
 		}
 	}
 }
@@ -275,6 +290,123 @@ void Grid::generateHeatMap()
 			gridVector.at(i).setColor(colourValue);
 		}
 	}
+}
+
+class Comparer
+{
+public:
+	bool operator()(Cell* t_n1, Cell* t_n2) const
+	{
+		return (t_n1->m_pathCost + t_n1->getCost() )> (t_n2->m_pathCost + t_n2->getCost());
+	}
+};
+
+Cell& Grid::returnCell(int t_id)
+{
+	return gridVector.at(t_id);
+}
+
+void Grid::neighbours(int t_row, int t_col, std::vector<Cell>& t_cells, int t_current)
+{
+	// List all neighbors:
+	for (int direction = 0; direction < 9; direction++) {
+		if (direction == 4) continue; // Skip 4, this is ourself.
+
+		int n_row = t_row + ((direction % 3) - 1); // Neighbor row
+		int n_col = t_col + ((direction / 3) - 1); // Neighbor column
+
+		// Check the bounds:
+		if (n_row >= 0 && n_row < MAX_ROWS && n_col >= 0 && n_col < MAX_COLS) {
+
+			// A valid neighbor:
+			//std::cout << "Neighbor: " << n_row << "," << n_col << " - " << t_current << std::endl;
+			t_cells.at(t_current).addNeighbour(n_row + (n_col * 50));
+			// add the cell id 
+			if (direction == 0 || direction == 2 || direction == 6 || direction == 8)
+			{
+				int diagId = t_cells.at(n_row + (n_col * 50)).getID();
+				t_cells.at(t_current).m_diagonalList.push_back(t_cells.at(n_row + (n_col * 50)).getID());
+			}
+		}
+	}
+}
+
+void Grid::runaStar(int t_start, int t_end)
+{
+	Cell* start = &gridVector.at(t_start);
+	Cell* end = &gridVector.at(t_end);
+
+	aStar(start, end);
+}
+
+void Grid::aStar(Cell* start, Cell* dest)
+{
+	Cell* s = start;
+	Cell* goal = dest;
+
+	std::vector<Cell*> childNodes;
+	std::priority_queue<Cell*, std::vector<Cell*>, Comparer> pq;
+
+	int distance = std::numeric_limits<int>::max();
+
+	for (int i = 0; i < MAX_CELLS; i++)
+	{
+		gridVector[i].m_pathCost = distance / 10;
+		gridVector[i].setPrevious(nullptr);
+		gridVector[i].setMarked(false);
+	}
+
+	if (goal != nullptr && s != nullptr)
+	{
+		s->m_pathCost = 0;
+		s->setMarked(true);
+		pq.push(s);
+
+		while (pq.size() != 0 && pq.top() != goal)
+		{
+			auto iter = pq.top()->m_neighbours.begin();
+			auto endIter = pq.top()->m_neighbours.end();
+			int i = 0;
+			for (; iter != endIter; iter++)
+			{
+				Cell* mychild = &returnCellsArray().at(*iter);
+				if (mychild != pq.top()->previous() )
+				{
+					float arcWeight = 10;
+					float distToChild = 0;
+
+					distToChild = (arcWeight + pq.top()->m_pathCost);
+					if (distToChild < mychild->m_pathCost)
+					{
+						mychild->m_pathCost = distToChild;
+						mychild->setPrevious(pq.top());
+
+						if (mychild == goal)
+						{
+							std::cout << "I finish" << std::endl;
+						}
+					}
+
+					if (mychild->marked() == false)
+					{
+						pq.push(mychild);
+						mychild->setMarked(true);
+					}
+				}
+			}
+			pq.pop();
+		}
+	}
+	Cell* pathNode = goal;
+	while (pathNode->previous() != nullptr)
+	{
+		pathNode = pathNode->previous();
+
+		sf::Vector3f colourValue = { 200.0f,255.0f,0.0f };
+		pathNode->setColor(colourValue);
+	}
+
+	childNodes.clear();
 }
 
 void Grid::update()

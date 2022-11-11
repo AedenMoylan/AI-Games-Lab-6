@@ -64,10 +64,10 @@ void Cell::initRect()
     cellShape.setSize(sf::Vector2f{ ScreenSize::WIDTH / 50,ScreenSize::HEIGHT / 50 });
 }
 
-void Cell::addNeighbours(int t_id)
-{
-    neighborVector.push_back(t_id);
-}
+//void Cell::addNeighbours(int t_id)
+//{
+//    neighborVector.push_back(t_id);
+//}
 
 void Cell::addCost(int m_cost)
 {

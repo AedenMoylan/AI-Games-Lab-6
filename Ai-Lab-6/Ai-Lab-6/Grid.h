@@ -4,6 +4,7 @@
 #include "ScreenSize.h"
 #include "Cell.h"
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ class Grid
 	bool areObstaclesSelected;
 	sf::Text costText[MAX_CELLS];
 	int endID;
+	int startID;
 public:
 	void init();
 	void selectStartPosition(sf::RenderWindow& t_window);
@@ -38,5 +40,20 @@ public:
 	void setCost(int t_p, int t_col, int t_cal, int t_cost);
 	void generateHeatMap();
 	void update();
+
+	void neighbours(int t_row, int t_col, std::vector<Cell>& t_cells, int t_current);
+	void aStar(Cell* start, Cell* end);
+
+	std::vector<Cell>& returnCellsArray()
+	{
+		return gridVector;
+	}
+
+	Cell& returnCell(int t_id);
+	void runaStar(int t_start, int t_end);
+	void markPath();
+	void putPathRightWayUp();
+
+	sf::RectangleShape m_pathITtake[200];
 
 };

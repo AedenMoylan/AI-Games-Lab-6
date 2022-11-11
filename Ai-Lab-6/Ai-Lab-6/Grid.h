@@ -5,6 +5,7 @@
 #include "Cell.h"
 #include <vector>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -47,8 +48,10 @@ public:
 		return gridVector;
 	}
 	Cell& returnCell(int t_id);
+	sf::Vector2f findEndPos(int t_myId);
 	void startAStar(int t_start, int t_end);
-	void movePlayer(Cell* t_path);
+	void movePlayer(std::stack<Cell*> t_path);
 	bool canPlayerMove;
-	Cell* playerPath;
+	std::stack<Cell*> playerPath;
+
 };

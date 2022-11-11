@@ -3,6 +3,9 @@
 void Cell::init()
 {
     cost = -10;
+    vectorShape.setFillColor(sf::Color::Cyan) ;
+    vectorShape.setSize(sf::Vector2f(4,16));
+    vectorShape.setOrigin(sf::Vector2f(2, 8));
 }
 
 void Cell::setStartColour()

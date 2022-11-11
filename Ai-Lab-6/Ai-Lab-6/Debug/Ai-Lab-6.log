@@ -28,6 +28,8 @@ C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(55,
 C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(58,62): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
 C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(59,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
 C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(60,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(69,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(326,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(68,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(90,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(358,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(316): warning C4715: 'Grid::findEndPos': not all control paths return a value
   Ai-Lab-6.vcxproj -> C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Debug\Ai-Lab-6.exe

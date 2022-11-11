@@ -59,7 +59,28 @@ void Grid::selectEndPosition(sf::RenderWindow& t_window)
 			gridVector.at(id).setEndPoint(true);
 			endID = id;
 			isEndPositionSelected = true;
+			for (int i = 0; i < 2500; i++)
+			{
+				sf::Vector2f endPos = findEndPos(endID);
+				float dx = gridVector.at(i).getCellShape().getPosition().x - endPos.x;
+				float dy = gridVector.at(i).getCellShape().getPosition().y - endPos.y;
 
+				float rotation = (-atan2(dx, dy) * 180 / 3.14159);
+				if (rotation > 0 && rotation < 44 || rotation > 0 - 180 && rotation < 44 - 180)
+				{
+					rotation = 45;
+				}
+
+				if (rotation > 0 -45 && rotation < 44 -45 || rotation > 360 - 44 - 180 && rotation < 360 - 180)
+				{
+					rotation = -45;
+				}
+
+
+
+				gridVector.at(i).vectorShape.setRotation(rotation);
+
+			}
 			makeCost();
 			setObstacleCost();
 			setCostText();
@@ -92,7 +113,6 @@ void Grid::selectObstaclePosition(sf::RenderWindow& t_window)
 		for (int i = 0; i < MAX_OBSTACLES; i++)
 		{
 			int randNum = (rand() % MAX_CELLS) + 1;
-			/*std::cout << "Obstacle Point: " + std::to_string(gridVector.at(randNum).getID()) << std::endl;*/
 			gridVector.at(randNum).setObstacleColour();
 			gridVector.at(randNum).setObstaclePoint(true);
 		}
@@ -115,6 +135,7 @@ void Grid::setupGrid()
 		}
 		gridVector.push_back(cell);
 		gridVector.at(i).setID(i);
+		gridVector.at(i).vectorShape.setPosition(gridVector.at(i).getCellShape().getPosition().x + 15, gridVector.at(i).getCellShape().getPosition().y +15);
 	}
 
 	for (int i = 0; i < 2500; i++) // 50 * 50 = 2500
@@ -129,9 +150,11 @@ void Grid::render(sf::RenderWindow& t_window)
 {
 	for (int i = 0; i < MAX_CELLS; i++)
 	{
+		//t_window.draw(gridVector.at(i).vectorShape);
 		t_window.draw(gridVector.at(i).getCellShape());
 		if (gridVector.at(i).getIsObstaclePoint() == false)
 		{
+			t_window.draw(gridVector.at(i).vectorShape);
 			t_window.draw(costText[i]);
 		}
 	}
@@ -283,6 +306,15 @@ Cell& Grid::returnCell(int t_id)
 	return gridVector.at(t_id);
 }
 
+sf::Vector2f Grid::findEndPos(int t_myId)
+{
+	for (int i = 0; i < MAX_CELLS; i++)
+	{
+		return gridVector.at(t_myId).getCellShape().getPosition();
+
+	}
+}
+
 void Grid::neighbours(int t_row, int t_col, std::vector<Cell>& t_cells, int t_current)
 {
 	// List all neighbors:
@@ -371,49 +403,55 @@ void Grid::aStar(Cell* t_start, Cell* t_end)
 	}
 	Cell* pathNode = goal;
 	Cell* pathNode2 = goal;
-	playerPath = goal;
 	while (pathNode->previous() != nullptr)
 	{
+		playerPath.push(pathNode);
 		pathNode = pathNode->previous();
 		sf::Vector3f colourValue = { 200.0f,255.0f,0.0f };
 		pathNode->setColor(colourValue);
 	}
 
+	//for (auto i = 49; i >= 0; i--)
+	//{
+	//	playerPath2[i] = pathNode2->getID();
+	//	pathNode2 = pathNode2->previous();
+	//}
+
 	canPlayerMove = true;
-	player.setPosition(playerPath->getCellShape().getPosition());
+	player.setPosition(playerPath.top()->getCellShape().getPosition());
 }
 
 void Grid::update()
 {
 	if (canPlayerMove == true)
 	{
-		if (player.getPosition() != gridVector.at(startID).getCellShape().getPosition())
+		if (player.getPosition() != gridVector.at(endID).getCellShape().getPosition())
 		{
 			movePlayer(playerPath);
 		}		
 	}
 }
 
-void Grid::movePlayer(Cell* t_path)
+void Grid::movePlayer(std::stack<Cell*> t_path)
 {
-	if (player.getPosition().x > t_path->getCellShape().getPosition().x)
+	if (player.getPosition().x > t_path.top()->getCellShape().getPosition().x)
 	{
 		player.move(-1, 0);
 	}
-	if (player.getPosition().x < t_path->getCellShape().getPosition().x)
+	if (player.getPosition().x < t_path.top()->getCellShape().getPosition().x)
 	{
 		player.move(1, 0);
 	}
-	if (player.getPosition().y > t_path->getCellShape().getPosition().y)
+	if (player.getPosition().y >  t_path.top()->getCellShape().getPosition().y)
 	{
 		player.move(0, -1);
 	}
-	if (player.getPosition().y < t_path->getCellShape().getPosition().y)
+	if (player.getPosition().y < t_path.top()->getCellShape().getPosition().y)
 	{
 		player.move(0, 1);
 	}
-	if (player.getPosition() == t_path->getCellShape().getPosition())
+	if (player.getPosition() == t_path.top()->getCellShape().getPosition())
 	{
-		playerPath = playerPath->previous();
+		playerPath.pop();
 	}
 }

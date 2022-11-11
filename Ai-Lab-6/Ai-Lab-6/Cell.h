@@ -41,7 +41,7 @@ public:
 	float pathCost;
 	float m_h;
 	std::vector<int> m_neighbours;
-	std::vector<int> m_diagonalList;
 	sf::RectangleShape getCellShape();
+	sf::RectangleShape vectorShape;
 
 };

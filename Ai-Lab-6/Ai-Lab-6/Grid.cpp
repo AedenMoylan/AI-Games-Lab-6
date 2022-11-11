@@ -15,6 +15,10 @@ void Grid::init()
 	}
 	int count = 0;
 
+	player.setFillColor(sf::Color::Magenta);
+	player.setRadius(15);
+	canPlayerMove = false;
+
 }
 
 void Grid::selectStartPosition(sf::RenderWindow& t_window)
@@ -131,6 +135,7 @@ void Grid::render(sf::RenderWindow& t_window)
 			t_window.draw(costText[i]);
 		}
 	}
+	t_window.draw(player);
 
 }
 
@@ -365,6 +370,8 @@ void Grid::aStar(Cell* t_start, Cell* t_end)
 		}
 	}
 	Cell* pathNode = goal;
+	Cell* pathNode2 = goal;
+	playerPath = goal;
 	while (pathNode->previous() != nullptr)
 	{
 		pathNode = pathNode->previous();
@@ -372,9 +379,41 @@ void Grid::aStar(Cell* t_start, Cell* t_end)
 		pathNode->setColor(colourValue);
 	}
 
+	canPlayerMove = true;
+	player.setPosition(playerPath->getCellShape().getPosition());
 }
 
 void Grid::update()
 {
+	if (canPlayerMove == true)
+	{
+		if (player.getPosition() != gridVector.at(startID).getCellShape().getPosition())
+		{
+			movePlayer(playerPath);
+		}		
+	}
+}
 
+void Grid::movePlayer(Cell* t_path)
+{
+	if (player.getPosition().x > t_path->getCellShape().getPosition().x)
+	{
+		player.move(-1, 0);
+	}
+	if (player.getPosition().x < t_path->getCellShape().getPosition().x)
+	{
+		player.move(1, 0);
+	}
+	if (player.getPosition().y > t_path->getCellShape().getPosition().y)
+	{
+		player.move(0, -1);
+	}
+	if (player.getPosition().y < t_path->getCellShape().getPosition().y)
+	{
+		player.move(0, 1);
+	}
+	if (player.getPosition() == t_path->getCellShape().getPosition())
+	{
+		playerPath = playerPath->previous();
+	}
 }

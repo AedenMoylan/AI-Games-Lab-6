@@ -23,6 +23,7 @@ class Grid
 	sf::Text costText[MAX_CELLS];
 	int endID;
 	int startID;
+	sf::CircleShape player;
 public:
 	void init();
 	void selectStartPosition(sf::RenderWindow& t_window);
@@ -47,5 +48,7 @@ public:
 	}
 	Cell& returnCell(int t_id);
 	void startAStar(int t_start, int t_end);
-
+	void movePlayer(Cell* t_path);
+	bool canPlayerMove;
+	Cell* playerPath;
 };

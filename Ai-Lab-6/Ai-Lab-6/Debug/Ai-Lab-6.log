@@ -1,55 +1,33 @@
-﻿  Cell.cpp
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Cell.cpp(20,52): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Cell.cpp(20,45): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Cell.cpp(20,38): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Cell.cpp(84,19): warning C4244: 'initializing': conversion from 'T' to 'sf::Uint8', possible loss of data
+﻿  Grid.cpp
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(31,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Cell.cpp(85,21): warning C4244: 'initializing': conversion from 'T' to 'sf::Uint8', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(32,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Cell.cpp(86,20): warning C4244: 'initializing': conversion from 'T' to 'sf::Uint8', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(33,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(36,64): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(37,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(38,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(41,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(53,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  Game.cpp
-  Grid.cpp
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(27,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(54,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(28,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(29,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(32,64): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(33,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(34,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(37,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(49,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(50,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(51,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(54,62): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(55,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(56,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(65,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
-C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(321,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  main.cpp
-  Generating Code...
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(55,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(58,62): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(59,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(60,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(69,18): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Ai-Lab-6\Grid.cpp(326,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Ai-Lab-6.vcxproj -> C:\Users\gameuser\Desktop\AI lab 6\AI-Games-Lab-6\Ai-Lab-6\Debug\Ai-Lab-6.exe
